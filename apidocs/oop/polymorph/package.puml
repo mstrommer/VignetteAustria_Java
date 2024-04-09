@@ -1,0 +1,59 @@
+@startuml
+    namespace oop.polymorph {
+
+        abstract class VignetteBase [[VignetteBase.html]] {
+            #startDate: Date
+            #kfzType: String
+            #plate: String
+            +VignetteBase(Date, String)
+            +VignetteBase(Date, String, String)
+            +getPlate(): String
+            {abstract} +validUntil(): Date
+            +isExpired(): boolean
+            {abstract} +isValid(): boolean
+            +display(): String
+            #getEndOfDay(Date): Date
+        }
+
+        class TenDayVignette [[TenDayVignette.html]] {
+            +TenDayVignette(Date, String)
+            +validUntil(): Date
+            +isValid(): boolean
+        }
+
+        class AnnualVignette [[AnnualVignette.html]] {
+            +AnnualVignette(Date, String, String)
+            +validUntil(): Date
+            +isValid(): boolean
+            +changePlate(String): boolean
+        }
+
+        class TwoMonthsVignette [[TwoMonthsVignette.html]] {
+            +TwoMonthsVignette(Date, String)
+            +validUntil(): Date
+            +isValid(): boolean
+        }
+
+        class SingleDayVignette [[SingleDayVignette.html]] {
+            +SingleDayVignette(Date, String)
+            +validUntil(): Date
+            +isValid(): boolean
+        }
+
+        class Main [[Main.html]] {
+            {static} +main(String[]): void
+        }
+
+        interface ICanChangePlate [[ICanChangePlate.html]] {
+            {abstract} +changePlate(String): boolean
+        }
+
+        VignetteBase <|-- TenDayVignette
+        VignetteBase <|-- AnnualVignette
+        ICanChangePlate <|.. AnnualVignette
+        VignetteBase <|-- TwoMonthsVignette
+        VignetteBase <|-- SingleDayVignette
+    }
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

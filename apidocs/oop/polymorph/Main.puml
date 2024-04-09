@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>Main\n<size:10>oop.polymorph" as oop.polymorph.Main [[Main.html]] {
+        {static} +main(String[]): void
+    }
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

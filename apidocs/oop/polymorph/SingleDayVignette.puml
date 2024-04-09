@@ -1,0 +1,20 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>SingleDayVignette\n<size:10>oop.polymorph" as oop.polymorph.SingleDayVignette [[SingleDayVignette.html]] {
+        +SingleDayVignette(Date, String)
+        +validUntil(): Date
+        +isValid(): boolean
+    }
+
+    abstract class "<size:14>VignetteBase\n<size:10>oop.polymorph" as oop.polymorph.VignetteBase [[VignetteBase.html]] {
+        {abstract} +validUntil(): Date
+        {abstract} +isValid(): boolean
+    }
+
+    oop.polymorph.VignetteBase <|-- oop.polymorph.SingleDayVignette
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml
