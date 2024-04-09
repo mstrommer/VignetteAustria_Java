@@ -20,7 +20,7 @@ public class AnnualVignette extends VignetteBase implements ICanChangePlate {
      *                  vignette.
      */
     public AnnualVignette(Date startDate, String kfzType, String plate) {
-         
+         super(startDate, kfzType, plate);
     }
 
     /**
@@ -33,7 +33,12 @@ public class AnnualVignette extends VignetteBase implements ICanChangePlate {
      */
     @Override
     public Date validUntil() {
-         
+         Calendar c = Calendar.getInstance();
+         c.setTime(this.startDate);
+         c.add(Calendar.YEAR,1);
+         c.set(Calendar.MONTH, 0);
+         c.set(Calendar.DAY_OF_YEAR, 30);
+         return getEndOfDay(c.getTime());
     }
 
     /**
@@ -45,7 +50,7 @@ public class AnnualVignette extends VignetteBase implements ICanChangePlate {
      */
     @Override
     public boolean isValid() {
-         
+         return !this.isExpired();
     }
 
     /**
@@ -57,6 +62,10 @@ public class AnnualVignette extends VignetteBase implements ICanChangePlate {
      */
     @Override
     public boolean changePlate(String newPlate) {
-         
+         if(newPlate != null && !newPlate.equals("")) {
+             this.plate = newPlate;
+             return true;
+         }
+         return false;
     }
 }

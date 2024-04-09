@@ -1,5 +1,6 @@
 package oop.polymorph;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -29,7 +30,7 @@ public abstract class VignetteBase {
      * @return The license plate number associated with the vignette.
      */
     public String getPlate() {
-           
+           return this.plate;
     }
 
 
@@ -41,7 +42,8 @@ public abstract class VignetteBase {
      * @param kfzType   The type of the vehicle.
      */
     public VignetteBase(Date startDate, String kfzType) {
-           
+           this.startDate = startDate;
+           this.kfzType = kfzType;
     }
 
     /**
@@ -53,7 +55,8 @@ public abstract class VignetteBase {
      * @param plate     The license plate number associated with the vignette.
      */
     public VignetteBase(Date startDate, String kfzType, String plate) {
-           
+        this(startDate, kfzType);
+        this.plate = plate;
     }
 
     /**
@@ -64,7 +67,7 @@ public abstract class VignetteBase {
     public abstract Date validUntil();
 
     public boolean isExpired() {
-           
+           return (new Date()).compareTo(validUntil()) > 0;
     }
 
     /**
@@ -80,7 +83,9 @@ public abstract class VignetteBase {
      * @return A string representation of the vignette.
      */
     public String display() {
-           
+        return "KFZ Type " + this.kfzType + " ." +
+                "Valid from " + this.startDate + " until " +
+                this.validUntil();
     }
 
     /**
@@ -90,7 +95,12 @@ public abstract class VignetteBase {
      * @return The end of the day for the given date.
      */
     protected Date getEndOfDay(Date day) {
-           
+        Calendar c = Calendar.getInstance();
+        c.setTime(day);
+        c.set(Calendar.HOUR, 23);
+        c.set(Calendar.MINUTE, 59);
+        c.set(Calendar.SECOND, 59);
+        return c.getTime();
     }
 
 }
