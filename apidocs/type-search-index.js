@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"oop.polymorph","l":"AnnualVignette"},{"p":"oop.polymorph","l":"ICanChangePlate"},{"p":"oop.polymorph","l":"Main"},{"p":"oop.polymorph","l":"SingleDayVignette"},{"p":"oop.polymorph","l":"TenDayVignette"},{"p":"oop.polymorph","l":"TwoMonthsVignette"},{"p":"oop.polymorph","l":"VignetteBase"}]
